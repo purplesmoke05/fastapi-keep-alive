@@ -1,4 +1,4 @@
-# Fastapi Memory Leak test
+# Fastapi Connectivity test
 
 This is a simple test for connectivity between fastapi and node-fetch client.
 
