@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "baseUrl": "./app/",
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": false,
+      "strictNullChecks": true,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": false,
+      "esModuleInterop": true,
+      "module": "es2022",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "react",
+      "outDir": "./.bin/",
+      "paths": {
+        "app/*": ["../app/*"],
+      }
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts"]
+  }
+  
