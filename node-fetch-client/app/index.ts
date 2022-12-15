@@ -53,8 +53,8 @@ const main = async () => {
         }
     } else {
         console.log("Not sync mode")
-        let spawn: Promise<Response>[] = [];
         for (let c = 0; c < CYCLE_NUM; c++) {
+            let spawn: Promise<Response>[] = [];
             for (let r = 0; r < REQUEST_NUM; r++) {
                 if (ENABLE_KEEP_ALIVE) {
                     spawn.push(fetch(TARGET_URL, options))
@@ -62,11 +62,11 @@ const main = async () => {
                     spawn.push(fetch(TARGET_URL))
                 }
             }
-        }
-        try{
-            await Promise.all(spawn)
-        } catch (e) {
-            console.log(e)
+            try{
+                await Promise.all(spawn)
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
 }

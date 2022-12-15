@@ -14,5 +14,5 @@ gunicorn --worker-class server.AppUvicornWorker \
          --timeout ${WORKER_TIMEOUT} \
          --max-requests ${WORKER_MAX_REQUESTS} \
          --max-requests-jitter ${WORKER_MAX_REQUESTS_JITTER} \
-         --keep-alive 0 \
+         --keep-alive 120 \
          test.main:app

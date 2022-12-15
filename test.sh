@@ -29,17 +29,20 @@ echo "Initial Mem Usage"
 echo "=========================================="
 docker stats fastapi-py310-normal-1 fastapi-py310-normal-2 fastapi-py310-normal-3 fastapi-py310-normal-4 --no-stream --format "{{.Name}}: {{.MemUsage}}"
 echo "=========================================="
-echo "Run bench mark with node-fetch-client(no keep-alive/10000Req/Sync) & FastAPI(no keep-alive)"
-docker run --name node-fetch-client-sync-disable-disable --network normal_py310_default1 -e TARGET_URL="http://fastapi-py310-normal-1:5000/" -e SYNC_MODE=true -e REQUEST_NUM=500 -e CYCLE_NUM=20 node-fetch-client ./run.sh >/dev/null 2>&1
+echo "Run bench mark with node-fetch-client(no keep-alive/10000Req/Async) & FastAPI(no keep-alive)"
+docker run --name node-fetch-client-sync-disable-disable --network normal_py310_default1 -e TARGET_URL="http://fastapi-py310-normal-1:5000/" -e REQUEST_NUM=50 -e CYCLE_NUM=200 node-fetch-client ./run.sh >/dev/null 2>&1
+sleep 3
 echo "=========================================="
-echo "Run bench mark with node-fetch-client(enable keep-alive/10000Req/Sync) & FastAPI(no keep-alive)"
-docker run --name node-fetch-client-sync-enable-disable --network normal_py310_default2 -e TARGET_URL="http://fastapi-py310-normal-2:5000/" -e ENABLE_KEEP_ALIVE=true -e SYNC_MODE=true -e REQUEST_NUM=500 -e CYCLE_NUM=20 node-fetch-client ./run.sh  >/dev/null 2>&1
+echo "Run bench mark with node-fetch-client(enable keep-alive/10000Req/Async) & FastAPI(no keep-alive)"
+docker run --name node-fetch-client-sync-enable-disable --network normal_py310_default2 -e TARGET_URL="http://fastapi-py310-normal-2:5000/" -e ENABLE_KEEP_ALIVE=true -e REQUEST_NUM=50 -e CYCLE_NUM=200 node-fetch-client ./run.sh  >/dev/null 2>&1
+sleep 3
 echo "=========================================="
-echo "Run bench mark with node-fetch-client(no keep-alive/10000Req/Sync) & FastAPI(enable keep-alive)"
-docker run --name node-fetch-client-sync-disable-enable --network normal_py310_default3 -e TARGET_URL="http://fastapi-py310-normal-3:5000/" -e SYNC_MODE=true -e REQUEST_NUM=500 -e CYCLE_NUM=20 node-fetch-client ./run.sh >/dev/null 2>&1
+echo "Run bench mark with node-fetch-client(no keep-alive/10000Req/Async) & FastAPI(enable keep-alive)"
+docker run --name node-fetch-client-sync-disable-enable --network normal_py310_default3 -e TARGET_URL="http://fastapi-py310-normal-3:5000/" -e REQUEST_NUM=50 -e CYCLE_NUM=200 node-fetch-client ./run.sh >/dev/null 2>&1
+sleep 3
 echo "=========================================="
-echo "Run bench mark with node-fetch-client(enable keep-alive/10000Req/Sync) & FastAPI(enable keep-alive)"
-docker run --name node-fetch-client-sync-enable-enable --network normal_py310_default4 -e TARGET_URL="http://fastapi-py310-normal-4:5000/" -e ENABLE_KEEP_ALIVE=true -e SYNC_MODE=true -e REQUEST_NUM=500 -e CYCLE_NUM=20 node-fetch-client ./run.sh >/dev/null 2>&1
+echo "Run bench mark with node-fetch-client(enable keep-alive/10000Req/Async) & FastAPI(enable keep-alive)"
+docker run --name node-fetch-client-sync-enable-enable --network normal_py310_default4 -e TARGET_URL="http://fastapi-py310-normal-4:5000/" -e ENABLE_KEEP_ALIVE=true -e REQUEST_NUM=50 -e CYCLE_NUM=200 node-fetch-client ./run.sh >/dev/null 2>&1
 echo "=========================================="
 echo "After Requests Mem Usage"
 docker stats fastapi-py310-normal-1 fastapi-py310-normal-2 fastapi-py310-normal-3 fastapi-py310-normal-4 --no-stream --format "{{.Name}}: {{.MemUsage}}"
@@ -55,13 +58,13 @@ echo "keepalive(server): enabled, keepalive(client): enabled"
 docker logs node-fetch-client-sync-enable-enable | grep -c "errno: 'ECONNRESET',"
 echo "=[SUMMARY] Worker process shutdown ======="
 echo "keepalive(server): disabled, keepalive(client): disabled"
-docker logs fastapi-py310-normal-1 &| grep -c 'shutdown complete'
+docker logs fastapi-py310-normal-1 2>&1 | grep -c 'shutdown complete'
 echo "keepalive(server): enabled, keepalive(client): disabled"
-docker logs fastapi-py310-normal-2 &| grep -c 'shutdown complete'
+docker logs fastapi-py310-normal-2 2>&1 | grep -c 'shutdown complete'
 echo "keepalive(server): disabled, keepalive(client): enabled"
-docker logs fastapi-py310-normal-3 &| grep -c 'shutdown complete'
+docker logs fastapi-py310-normal-3 2>&1 | grep -c 'shutdown complete'
 echo "keepalive(server): enabled, keepalive(client): enabled"
-docker logs fastapi-py310-normal-4 &| grep -c 'shutdown complete'
+docker logs fastapi-py310-normal-4 2>&1 | grep -c 'shutdown complete'
 
 echo "=========================================="
 echo "Cleanup...."
