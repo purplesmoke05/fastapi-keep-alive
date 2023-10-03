@@ -15,4 +15,5 @@ gunicorn --worker-class server.AppUvicornWorker \
          --max-requests ${WORKER_MAX_REQUESTS} \
          --max-requests-jitter ${WORKER_MAX_REQUESTS_JITTER} \
          --keep-alive 0 \
+         --reuse-port \
          test.main:app

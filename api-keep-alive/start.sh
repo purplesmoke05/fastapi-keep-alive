@@ -14,4 +14,5 @@ gunicorn --worker-class server.AppUvicornWorker \
          --timeout ${WORKER_TIMEOUT} \
          --max-requests ${WORKER_MAX_REQUESTS} \
          --max-requests-jitter ${WORKER_MAX_REQUESTS_JITTER} \
+         --reuse-port \
          test.main:app

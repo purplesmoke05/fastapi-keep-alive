@@ -12,5 +12,6 @@ class AppUvicornWorker(UvicornWorker):
         "loop": "asyncio",
         "http": "h11",
         # NOTE: gunicorn don't support '--worker-connections' to uvicorn
-        "limit_concurrency": WORKER_CONNECTIONS
+        "limit_concurrency": WORKER_CONNECTIONS,
+        "timeout_keep_alive": 2
     }
