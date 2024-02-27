@@ -32,7 +32,8 @@ RUN apt-get update -q \
  language-pack-ja \
  git \
  libyaml-cpp-dev \
- jq
+ jq \
+ lsof
 
 # remove unnecessary package files
 RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

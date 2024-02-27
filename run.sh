@@ -1,0 +1,21 @@
+
+
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-1 --network normal_py311_default1 -e KEEP_ALIVE=2 -e WORKER_MAX_REQUESTS=0 -p 15000:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-2 --network normal_py311_default2 -e KEEP_ALIVE=2 -e WORKER_MAX_REQUESTS=2000 -p 15001:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-3 --network normal_py311_default3 -e KEEP_ALIVE=120 -e WORKER_MAX_REQUESTS=0 -p 15002:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-4 --network normal_py311_default4 -e KEEP_ALIVE=120 -e WORKER_MAX_REQUESTS=0 -p 15003:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-5 --network normal_py311_default5 -e KEEP_ALIVE=0 -e WORKER_MAX_REQUESTS=0 -p 15004:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-6 --network normal_py311_default6 -e KEEP_ALIVE=0 -e WORKER_MAX_REQUESTS=0 -p 15005:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-7 --network normal_py311_default7 -e KEEP_ALIVE=0 -e WORKER_MAX_REQUESTS=0 -p 15006:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-8 --network normal_py311_default8 -e KEEP_ALIVE=0 -e WORKER_MAX_REQUESTS=2000 -p 15007:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-9 --network normal_py311_default9 -e KEEP_ALIVE=0 -e WORKER_MAX_REQUESTS=0 -p 15008:5000 -d $1 >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --sysctl net.ipv4.tcp_rmem="253952 253952 16777216" --sysctl net.ipv4.tcp_wmem="253952 253952 16777216" --name fastapi-py311-normal-10 --network normal_py311_default10 -e KEEP_ALIVE=0 -e WORKER_MAX_REQUESTS=2000 -p 15009:5000 -d $1 >/dev/null 2>&1
+
+docker run --sysctl net.core.somaxconn=65535 --name lb-1 --network normal_py311_default1 -d -v $(PWD)/reverse-proxy/nginx1.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-2 --network normal_py311_default2 -d -v $(PWD)/reverse-proxy/nginx2.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-3 --network normal_py311_default3 -d -v $(PWD)/reverse-proxy/nginx3.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-4 --network normal_py311_default4 -d -v $(PWD)/reverse-proxy/nginx4.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-5 --network normal_py311_default5 -d -v $(PWD)/reverse-proxy/nginx5.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-6 --network normal_py311_default6 -d -v $(PWD)/reverse-proxy/nginx6.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-7 --network normal_py311_default7 -d -v $(PWD)/reverse-proxy/nginx7.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1
+docker run --sysctl net.core.somaxconn=65535 --name lb-8 --network normal_py311_default8 -d -v $(PWD)/reverse-proxy/nginx8.conf:/etc/nginx/nginx.conf nginx >/dev/null 2>&1

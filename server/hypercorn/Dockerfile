@@ -32,7 +32,8 @@ RUN apt-get update -q \
  language-pack-ja \
  git \
  libyaml-cpp-dev \
- jq
+ jq \
+ lsof
 
 # remove unnecessary package files
 RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -66,8 +67,6 @@ USER root
 COPY ./app /app/test/
 RUN chown -R apl:apl /app/test
 
-COPY ./server.py /app
-RUN chown -R apl:apl /app/server.py
 COPY ./start.sh /app
 RUN chown -R apl:apl /app/start.sh
 
